@@ -7,14 +7,12 @@ public class Task {
 	private int id;
     private String name;
     private String description;
-    private String type;
+    private String typeTask;
     private Date dateCreated;
     private Date dateUpdated;
     private String taskStatus;
     private String assignedTo;
     private Date dateConclusion;
-
- 
   
 	public int getId() {
 		return id;
@@ -63,7 +61,7 @@ public class Task {
                 + ", dateCreated=" + dateCreated
                 + ", dateUpdated=" + dateUpdated
                 +", assignedTo="+ assignedTo
-                +", type="+ type
+                +", typeTask="+ typeTask
                 +", taskStatus="+ taskStatus
                 +", dateConclusion"+ dateConclusion + "]";
     }
@@ -84,12 +82,12 @@ public class Task {
 		this.dateConclusion = dateConclusion;
 	}
 
-	public String getType() {
-		return type;
+	public String getTypeTask() {
+		return typeTask;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setTypeTask(String typeTask) {
+		this.typeTask = typeTask;
 	}
 
 	public String getTaskStatus() {

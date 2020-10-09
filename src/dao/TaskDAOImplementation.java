@@ -22,27 +22,25 @@ public class TaskDAOImplementation implements TaskDAO {
 	@Override
 	public void createTask(Task task) {
 		try {
-            String query = "insert into tasks (name, description, type, taskStatus, dateCreated, dateUpdated, assignedTo, dateConclusion) values (?,?,?,?,?,?,?,?)";
+            String query = "insert into tasks (name, description, typeTask, taskStatus, dateCreated, dateUpdated, assignedTo, dateConclusion) values (?,?,?,?,?,?,?,?)";
             
             PreparedStatement preparedStatement = conn.prepareStatement(query);
             
             preparedStatement.setString( 1, task.getName() );
             preparedStatement.setString( 2, task.getDescription() );
             
-            preparedStatement.setString( 3, task.getType() );
+            preparedStatement.setString( 3, task.getTypeTask() );
             preparedStatement.setString( 4, task.getTaskStatus() );
             
             java.util.Date utilDate = new java.util.Date();
             java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
          
-            
             task.setDateCreated(sqlDate);
             preparedStatement.setDate( 5, task.getDateCreated() );
             
             task.setDateUpdated(sqlDate);
             preparedStatement.setDate( 6, task.getDateUpdated() );
-            
-          //novos campos
+        
             preparedStatement.setString(7, task.getAssignedTo());
             
             task.setDateConclusion(sqlDate);
@@ -58,14 +56,14 @@ public class TaskDAOImplementation implements TaskDAO {
 	@Override
 	public void editTask(Task task) {
 		try {
-			String query = "update tasks set name=?, description=?, type=?, taskStatus=?, dateCreated=?, dateUpdated=?, assignedTo=?, dateConclusion=?"
+			String query = "update tasks set name=?, description=?, typeTask=?, taskStatus=?, dateCreated=?, dateUpdated=?, assignedTo=?, dateConclusion=?"
 					+ " where id=?";
 	        
 			PreparedStatement preparedStatement = conn.prepareStatement(query);
 	        
 			preparedStatement.setString( 1, task.getName() );
 	        preparedStatement.setString( 2, task.getDescription() );
-	        preparedStatement.setString( 3, task.getType() );
+	        preparedStatement.setString( 3, task.getTypeTask() );
 	        preparedStatement.setString( 4, task.getTaskStatus() );
 	        preparedStatement.setDate( 5, task.getDateCreated() );
 	        
@@ -112,7 +110,7 @@ public class TaskDAOImplementation implements TaskDAO {
                 task.setId(resultSet.getInt("id"));
                 task.setName(resultSet.getString("name"));
                 task.setDescription(resultSet.getString("description"));
-                task.setType(resultSet.getString("type"));
+                task.setTypeTask(resultSet.getString("typeTask"));
                 task.setTaskStatus(resultSet.getString("taskStatus"));
                 task.setDateCreated(resultSet.getDate("dateCreated"));
                 task.setDateUpdated(resultSet.getDate("dateUpdated"));
@@ -140,7 +138,7 @@ public class TaskDAOImplementation implements TaskDAO {
             	task.setId(resultSet.getInt("id"));
             	task.setName(resultSet.getString("name"));
             	task.setDescription(resultSet.getString("description"));
-            	task.setType(resultSet.getString("type"));
+            	task.setTypeTask(resultSet.getString("typeTask"));
             	task.setTaskStatus(resultSet.getString("taskStatus"));
             	task.setDateCreated(resultSet.getDate("dateCreated"));
             	task.setDateUpdated(resultSet.getDate("dateUpdated"));

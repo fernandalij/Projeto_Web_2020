@@ -10,6 +10,7 @@
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
 </head>
 <header>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -54,21 +55,38 @@
                 <td><c:out value="${task.id}" /></td>
                 <td><c:out value="${task.name}" /></td>
                 <td><c:out value="${task.description}" /></td>
-                <td><c:out value="${task.type}" /></td>
+                <td><c:out value="${task.typeTask}" /></td>
                 <td><c:out value="${task.taskStatus}" /></td>
                 <td><c:out value="${task.dateCreated}" /></td>
                 <td><c:out value="${task.dateUpdated}" /></td>
                 <td><c:out value="${task.assignedTo}" /></td>
                 <td><c:out value="${task.dateConclusion}" /></td>
                 <td><a href="TaskController.do?action=edit&id=<c:out value="${task.id}"/>">Editar</a></td>
-                <td><a href="TaskController.do?action=delete&id=<c:out value="${task.id}"/>">Remover</a></td>
-            </tr>
-        </c:forEach>
+                <form action='TaskController.do' method='delete'>
+                	<td><a href="TaskController.do?action=delete&id=<c:out value="${task.id}"/>">Remover</a></td>
+                </form>
+           	 </tr>
+        	</c:forEach>
             </tbody>
-        </table>
-       <a href="TaskController.do?action=create"><button class="btn btn-secondary">Nova Tarefa</button></a>
-        </div>
-    </div>
-      
+     	   </table>
+     	  <a href="TaskController.do?action=create"><button class="btn btn-secondary">Nova Tarefa</button></a>
+       </div>
+     
+<jsp:useBean id="now" class="java.util.Date"></jsp:useBean> 
+	
+	<c:forEach items= "${tasks}" var="task">
+		<c:if test="${task.dateConclusion le now}">
+			<c:if test="${task.dateConclusion le now}">
+				<script>
+	        		alert("a atividade " + ${task.id} +"esta atrasada");
+	   			 </script>
+   			 </c:if>
+		</c:if>
+	</c:forEach>   
+  
+    
+</div>
+
+   
 </body>
 </html>

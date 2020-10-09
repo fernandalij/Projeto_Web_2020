@@ -13,10 +13,10 @@
 </head>
 <header>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">WEB</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+ 	<a class="navbar-brand" href="#">WEB</a>
+ 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+  	</button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
@@ -30,12 +30,15 @@
   </div>
 </nav>
 	</header>
-<body>
-    <div class="container col-md-6 .offset-md-3" style="margin-top: 40px;">
-    <div>
+	<body>
+   	 <div class="container col-md-6 .offset-md-3" style="margin-top: 40px;">
+   	 <div>
         <h3>Crie uma nova tarefa</h3>
-    </div>
+   		 </div>
         <form action='TaskController.do' method='post'>
+            <div class="form-group">
+            	<input type='hidden' name='id' value="${task.id}">
+            </div>
             <div class="form-group">
                 <input type="name" class="form-control" name="name" placeholder="Nome" value="${task.name}">
             </div>
@@ -43,11 +46,13 @@
                 <input type="text" class="form-control" name="description" placeholder="Descrição" value="${task.description}">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="type" placeholder="Tipo" value="${task.type}">
+                <input type="text" class="form-control" name="typeTask" placeholder="Tipo" value="${task.typeTask}">
             </div>
-            <div class="form-group">
-                <input type="text" class="form-control" name="taskStatus" placeholder="Status da tarefa" value="${taskStatus.type}">
-            </div>
+  				<select class="form-control" name="taskStatus">
+ 			  		 <option value="planejada">Planejada</option>
+  			 		 <option value="andamento">Em andamento</option>
+  			 		 <option value="concluida">Concluída</option>
+ 				 </select>
             <div class="form-group">
                 <input type="hidden" class="form-control" name="dateCreated"  value="${task.dateCreated}">
             </div>
@@ -58,7 +63,8 @@
                 <input type="text" class="form-control" name="assignedTo" placeholder="Atribuido para" value="${task.assignedTo}">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="dateConclusion" placeholder="Data de conclusão" value="${task.dateConclusion}">
+            	<label for="">Data de Conclusão</label>
+                <input type="date" class="form-control" name="dateConclusion" placeholder="Data de conclusão" value="${task.dateConclusion}">
             </div>
             <button type="submit" class="btn btn-primary">Salvar</button>
         </form>
